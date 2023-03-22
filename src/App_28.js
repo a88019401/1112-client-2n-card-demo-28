@@ -14,7 +14,7 @@ function App_28() {
       <Route path = '/card_28' element={<BlogStaticPage_xx/>}></Route>
       <Route path = '/card2_local_28' element={<BlogsLocalJsonPage_28/>}></Route>
       <Route path = '/card2_node_28' element={<BlogsNodeServerPage_28/>}></Route>
-      <Route path = '/card2_supabase_28' element={<BlogsSupabasePage_28/>}></Route>
+      <Route path = '/supabase_28' element={<BlogsSupabasePage_28/>}></Route>
 
     </Routes>
     </BrowserRouter>
