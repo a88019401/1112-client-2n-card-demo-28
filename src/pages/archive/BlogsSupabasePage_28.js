@@ -1,27 +1,38 @@
 import { useState,useEffect } from 'react';
-import axios from 'axios';
-import Wrapper from '../assets/wrapper/Blogs_28'
-import { useDemoContext_28 } from '../context/DemoContext_28';
+//import axios from 'axios';
 //import blogData from '../data/blogData2_28'
 //let api_url = `http://localhost:5000/api/card2_28`;
-let api_url = `https://one112-server-card-demo-28.onrender.com/api/card2_28`
-const BlogsNodeServerPage_28 = () =>{
-    //const [name, setName ] = useState('Jimmy Chang');
-    //const [id, setId] = useState('909410028');
-    //const [data, setData] = useState([]);
-    //console.log('blog data' , data);
-    const {pName,pId,blogs2} =useDemoContext_28();
+//let api_url = `https://one112-server-card-demo-28.onrender.com/api/card2_28`
+import { supabase } from '../db/clientSupabase';
+import Wrapper from '../assets/wrapper/Blogs_28'
 
-    
+const BlogsSupabasePage_28 = () =>{
+    const [name, setName ] = useState('Jimmy Chang');
+    const [id, setId] = useState('909410028');
+    const [data, setData] = useState([]);
+    //console.log('blog data' , data);
+    const fetchBlogDataFromSupabase = async ()=>{
+      try{
+        let {data,error} =await supabase.from
+        ('card_28').select('*');
+        console.log('data',data);
+        setData(data)
+      }catch(error){
+       console.log(error);
+      }
+    }
+    useEffect(()=>{
+      fetchBlogDataFromSupabase();
+    },[])
     return (
         <Wrapper>
             <section className="blogs">
       <div className="section-title">
-        <h2>fetch blogs from node server </h2>
-        <h3>{pName}{pId}</h3>
+        <h2>fetch blogs from supabase </h2>
+        <h3>{name}{id}</h3>
       </div>
       <div className="blogs-center2">
-        {blogs2.map((item)=>{
+        {data.map((item)=>{
           const {id,img,remote_img,category,title,desc}=item;
           return(        
           <article key={id} className="blog">
@@ -161,4 +172,4 @@ const BlogsNodeServerPage_28 = () =>{
     )
 }
 
-export default BlogsNodeServerPage_28;
+export default BlogsSupabasePage_28;

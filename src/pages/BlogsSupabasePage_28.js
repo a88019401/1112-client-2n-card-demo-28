@@ -4,38 +4,39 @@ import { useState,useEffect } from 'react';
 //let api_url = `http://localhost:5000/api/card2_28`;
 //let api_url = `https://one112-server-card-demo-28.onrender.com/api/card2_28`
 import { supabase } from '../db/clientSupabase';
-
-
+import Wrapper from '../assets/wrapper/Blogs_28'
+import { useDemoContext_28 } from '../context/DemoContext_28';
 const BlogsSupabasePage_28 = () =>{
-    const [name, setName ] = useState('Jimmy Chang');
-    const [id, setId] = useState('909410028');
-    const [data, setData] = useState([]);
+    //const [name, setName ] = useState('Jimmy Chang');
+   // const [id, setId] = useState('909410028');
+   // const [data, setData] = useState([]);
     //console.log('blog data' , data);
-    const fetchBlogDataFromSupabase = async ()=>{
-      try{
-        let {data,error} =await supabase.from
-        ('card_28').select('*');
-        console.log('data',data);
-        setData(data)
-      }catch(error){
-       console.log(error);
-      }
-    }
-    useEffect(()=>{
-      fetchBlogDataFromSupabase();
-    },[])
+    const {pName,pId,blogs} =useDemoContext_28();
+    //const fetchBlogDataFromSupabase = async ()=>{
+      //try{
+        //let {data,error} =await supabase.from
+        //('card_28').select('*');
+        //console.log('data',data);
+        //setData(data)
+      //}catch(error){
+       //console.log(error);
+      //}
+    //}
+    //useEffect(()=>{
+      //fetchBlogDataFromSupabase();
+    //},[])
     return (
-        <>
+        <Wrapper>
             <section className="blogs">
       <div className="section-title">
         <h2>fetch blogs from supabase </h2>
-        <h3>{name}{id}</h3>
+        <h3>{pName}{pId}</h3>
       </div>
       <div className="blogs-center2">
-        {data.map((item)=>{
-          const {id,img,remote_img,category,title,desc}=item;
+        {blogs.map((item)=>{
+          const {pId,img,remote_img,category,title,desc}=item;
           return(        
-          <article key={id} className="blog">
+          <article key={pId} className="blog">
           <img
             src={img}
             alt={title}
@@ -168,7 +169,7 @@ const BlogsSupabasePage_28 = () =>{
         </article>
       </div>
     </section>
-        </>
+        </Wrapper>
     )
 }
 

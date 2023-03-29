@@ -1,43 +1,17 @@
-import { useState,useEffect } from 'react';
-import axios from 'axios';
-import Wrapper from '../assets/wrapper/Blogs_28'
-import { useDemoContext_28 } from '../context/DemoContext_28';
-//import blogData from '../data/blogData2_28'
-//let api_url = `http://localhost:5000/api/card2_28`;
-let api_url = `https://one112-server-card-demo-28.onrender.com/api/card2_28`
-const BlogsNodeServerPage_28 = () =>{
-    //const [name, setName ] = useState('Jimmy Chang');
-    //const [id, setId] = useState('909410028');
-    //const [data, setData] = useState([]);
-    //console.log('blog data' , data);
-    const {pName,pId,blogs2} =useDemoContext_28();
 
-    
+import { useState } from 'react';
+import Wrapper from '../assets/wrapper/Blogs_28'
+
+const BlogStaticPage_xx = () =>{
+    const [name, setName ] = useState('Jimmy Chang');
+    const [id, setId] = useState('909410028')
     return (
         <Wrapper>
             <section className="blogs">
       <div className="section-title">
-        <h2>fetch blogs from node server </h2>
-        <h3>{pName}{pId}</h3>
+        <h2> fetch blogs from static data  -- {name}{id}</h2>
       </div>
       <div className="blogs-center2">
-        {blogs2.map((item)=>{
-          const {id,img,remote_img,category,title,desc}=item;
-          return(        
-          <article key={id} className="blog">
-          <img
-            src={img}
-            alt={title}
-            className="img blog-img"
-          />
-          <div className="blog-content">
-            <span>{category} <i className="fa-solid fa-mug-saucer"></i></span>
-            <h3>{title}</h3>
-            <p>{desc}</p>
-            <a href="#">read more</a>
-          </div>
-        </article>)
-        })}
         <article className="blog">
           <img
             src="./images/photo-1.jpg"
@@ -161,4 +135,4 @@ const BlogsNodeServerPage_28 = () =>{
     )
 }
 
-export default BlogsNodeServerPage_28;
+export default BlogStaticPage_xx;

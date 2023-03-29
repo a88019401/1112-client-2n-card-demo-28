@@ -1,18 +1,23 @@
 import { useState } from 'react';
 import blogData from '../data/blogData2_28'
+import Wrapper from '../assets/wrapper/Blogs_28'
+import { useDemoContext_28 } from '../context/DemoContext_28';
+
 const BlogStaticPage_28 = () =>{
-    const [name, setName ] = useState('Jimmy Chang');
-    const [id, setId] = useState('909410028');
-    const [data, setData] = useState(blogData);
-    console.log('blog data' , data);
+    //const [name, setName ] = useState('Jimmy Chang');
+    //const [id, setId] = useState('909410028');
+    
+    const {pName,pId,blogs} =useDemoContext_28();
+    //const [data, setData] = useState(blogData);
+    //console.log('blog data' , data);
     return (
-        <>
+        <Wrapper>
             <section className="blogs">
       <div className="section-title">
-        <h2>fetch blogs from local json data  -- {name}{id}</h2>
+        <h2>fetch blogs from local json data  -- {pName}{pId}</h2>
       </div>
       <div className="blogs-center2">
-        {data.map((item)=>{
+        {blogs.map((item)=>{
           const {id,img,remote_img,category,title,desc}=item;
           return(        
           <article key={id} className="blog">
@@ -148,7 +153,7 @@ const BlogStaticPage_28 = () =>{
         </article>
       </div>
     </section>
-        </>
+        </Wrapper>
     )
 }
 

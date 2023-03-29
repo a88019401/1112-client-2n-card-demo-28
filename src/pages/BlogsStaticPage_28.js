@@ -1,13 +1,16 @@
 import { useState } from 'react';
+import Wrapper from '../assets/wrapper/Blogs_28'
+import { useDemoContext_28 } from '../context/DemoContext_28';
 
-const BlogStaticPage_xx = () =>{
-    const [name, setName ] = useState('Jimmy Chang');
-    const [id, setId] = useState('909410028')
+const BlogStaticPage_28 = () =>{
+    //const [name, setName ] = useState('Jimmy Chang');
+    //const [id, setId] = useState('909410028')
+    const {pName,pId,blogs} =useDemoContext_28();
     return (
-        <>
+        <Wrapper>
             <section className="blogs">
       <div className="section-title">
-        <h2> fetch blogs from static data  -- {name}{id}</h2>
+        <h2> fetch blogs from static data  -- {pName}{pId}</h2>
       </div>
       <div className="blogs-center2">
         <article className="blog">
@@ -129,8 +132,8 @@ const BlogStaticPage_xx = () =>{
         </article>
       </div>
     </section>
-        </>
+        </Wrapper>
     )
 }
 
-export default BlogStaticPage_xx;
+export default BlogStaticPage_28;
