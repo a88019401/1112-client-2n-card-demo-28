@@ -10,9 +10,8 @@ const BlogsNodeServerPage_28 = () =>{
     //const [id, setId] = useState('909410028');
     //const [data, setData] = useState([]);
     //console.log('blog data' , data);
-    const {pName,pId,blogs2} =useDemoContext_28();
+    const {pName,pId,blogsNode} =useDemoContext_28();
 
-    
     return (
         <Wrapper>
             <section className="blogs">
@@ -21,8 +20,10 @@ const BlogsNodeServerPage_28 = () =>{
         <h3>{pName}{pId}</h3>
       </div>
       <div className="blogs-center2">
-        {blogs2.map((item)=>{
+
+        {blogsNode.map((item)=>{
           const {id,img,remote_img,category,title,desc}=item;
+     
           return(        
           <article key={id} className="blog">
           <img

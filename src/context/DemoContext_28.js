@@ -1,4 +1,4 @@
-import React,{useContext, useReducer, useEffect } from "react";
+import React,{useContext, useReducer, useEffect,useState  } from "react";
 import DemoReducer_28 from './DemoReducer_28';
 import{supabase} from'../db/clientSupabase';
 import axios from 'axios';
@@ -8,39 +8,45 @@ const initialState ={
     pName:'Chang Yo-Hao',
     pId:'909410028',
     blogs:[],
-    blogs2:[]
+    blogsNode:[]
 }
+
 const DemoContext_28 = React.createContext();
 const DemoProvider_28 =({children})=>{
 const[state, dispatch ] = useReducer(DemoReducer_28,initialState)
+
 const fetchBlogDataFromSupabase = async ()=>{
-    try{
-      let {data,error} =await supabase.from
-      ('card_28').select('*');
-      console.log('data',data);
-      dispatch({type:'GET_BLOGS_SUPABASE_SUCCESS',payload:data})
-      //setData(data)
-    }catch(error){
-     console.log(error);
-    }}
-  useEffect(()=>{
-    fetchBlogDataFromSupabase();
-  },[])
+  try{
+    let {data,error} =await supabase.from
+    ('card_28').select('*');
+    console.log('data',data);
+    dispatch({type:'GET_BLOGS_SUPABASE_SUCCESS',payload:data})
+    //setData(data)
+  }catch(error){
+   console.log(error);
+  }}
+useEffect(()=>{
+  fetchBlogDataFromSupabase();
+},[])
 
 
-  const fetchBlogDataFromNodeServer = async ()=>{
-    try{
-      const results =await axios.get(api_url);
-      console.log('results',results);
-      dispatch(results.data)
-
-    }catch(error){
-      console.log(error);
-    }
+const [data, setData] = useState([]);
+//console.log('blog data' , data);
+const fetchBlogDataFromNodeServer = async ()=>{
+  try{
+    const results =await axios.get(api_url);
+    console.log('results',results);
+    setData(results.data)
+  }catch(error){
+    console.log(error);
   }
-  useEffect(()=>{
-    fetchBlogDataFromNodeServer();
-  },[])
+}
+useEffect(()=>{
+  fetchBlogDataFromNodeServer();
+},[])
+
+
+
   
 return(
 <DemoContext_28.Provider value={{...state}}>
