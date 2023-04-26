@@ -1,24 +1,44 @@
-import { BrowserRouter, Routes,Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './App.css';
-import BlogStaticPage_xx from './pages/BlogsStaticPage_28';
+
 import HomePage_28 from './pages/HomePage_28';
+import BlogsStaticPage_28 from './pages/BlogsStaticPage_28';
 import BlogsLocalJsonPage_28 from './pages/BlogsLocalJsonPage_28';
 import BlogsNodeServerPage_28 from './pages/BlogsNodeServerPage_28';
 import BlogsSupabasePage_28 from './pages/BlogsSupabasePage_28';
-import Navbar from './components/NavbarResp_28'
+
+import ProductsStaticPage_28 from './pages/midprep_28/ProductsStaticPage_28';
+
+import ProductsNodeServerPage_28 from './pages/midprep_28/ProductsNodeServerPage_28';
+
+import ProductsNodeServerContextPage_28 from './pages/midprep_28/ProductsNodeServerContextPage_28';
+
+import MenuStaticPage_28 from './pages/mid_28/MenuStaticPage_28';
+
+import MenuLocalJsonPage_28 from './pages/mid_28/MenuLocalJsonPage_28';
+
+import MenuNodeServerPage_28 from './pages/mid_28/MenuNodeServerPage_28';
+
+import MenuNodeServerContextPage_28 from './pages/mid_28/MenuNodeServerContextPage_28';
+
+import Navbar from './components/NavbarResp_28';
 
 function App_28() {
   return (
     <BrowserRouter>
-    <Navbar/>
-    <Routes>     
-      <Route path = '/' element={HomePage_28}></Route>
-      <Route path = '/card_28' element={<BlogStaticPage_xx/>}></Route>
-      <Route path = '/local_28' element={<BlogsLocalJsonPage_28/>}></Route>
-      <Route path = '/node_28' element={<BlogsNodeServerPage_28/>}></Route>
-      <Route path = '/supabase_28' element={<BlogsSupabasePage_28/>}></Route>
-
-    </Routes>
+      <Navbar />
+      <Routes>
+        <Route path='/card_28' element={<BlogsStaticPage_28 />} />
+        <Route path='/local_28' element={<BlogsLocalJsonPage_28 />} />
+        <Route path='/node_28' element={<BlogsNodeServerPage_28 />} />
+        <Route path='/supabase_28' element={<BlogsSupabasePage_28 />} />
+        <Route path='/midp_static_28' element={<ProductsStaticPage_28 />} />
+        <Route path='/midp_node_28' element={<ProductsNodeServerPage_28 />} />
+        <Route
+          path='/midp_node_context_28'
+          element={<ProductsNodeServerContextPage_28 />}
+        />
+      </Routes>
     </BrowserRouter>
   );
 }

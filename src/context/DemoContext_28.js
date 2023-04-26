@@ -1,58 +1,87 @@
-import React,{useContext, useReducer, useEffect,useState  } from "react";
-import DemoReducer_28 from './DemoReducer_28';
-import{supabase} from'../db/clientSupabase';
+import React, { useContext, useReducer, useEffect } from 'react';
+
 import axios from 'axios';
 
-let api_url = `https://one112-server-card-demo-28.onrender.com/api/card2_28`
-const initialState ={
+import DemoReducer_28 from './DemoReducer_28';
+
+// import { supabase } from '../db/clientSupabse';
+
+let api_midprep_url = `http://localhost:5000/api/midprep_28/overview2_28`;
+
+let api_midterm_url = `http://localhost:5000/api/mid_28/menu_28`;
+
+const initialState = {
     pName:'Chang Yo-Hao',
     pId:'909410028',
-    blogs:[],
-    blogsNode:[]
-}
+  blogs: [],
+  blogs2: [],
+  data1: [],
+  data2: [],
+  menu: [],
+};
 
 const DemoContext_28 = React.createContext();
-const DemoProvider_28 =({children})=>{
-const[state, dispatch ] = useReducer(DemoReducer_28,initialState)
 
-const fetchBlogDataFromSupabase = async ()=>{
-  try{
-    let {data,error} =await supabase.from
-    ('card_28').select('*');
-    console.log('data',data);
-    dispatch({type:'GET_BLOGS_SUPABASE_SUCCESS',payload:data})
-    //setData(data)
-  }catch(error){
-   console.log(error);
-  }}
-useEffect(()=>{
-  fetchBlogDataFromSupabase();
-},[])
+const DemoProvider_28 = ({ children }) => {
+  const [state, dispatch] = useReducer(DemoReducer_28, initialState);
 
+  const fetchProductDataFromNodeServer = async () => {
+    try {
+      const results = await axios.get(api_midprep_url);
+      console.log('product data', results.data);
+      dispatch({ type: 'GET_PRODUCTS_NODE_SUCCESS', payload: results.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-const [data, setData] = useState([]);
-//console.log('blog data' , data);
-const fetchBlogDataFromNodeServer = async ()=>{
-  try{
-    const results =await axios.get(api_url);
-    console.log('results',results);
-    setData(results.data)
-  }catch(error){
-    console.log(error);
-  }
-}
-useEffect(()=>{
-  fetchBlogDataFromNodeServer();
-},[])
+  useEffect(() => {
+    fetchProductDataFromNodeServer();
+  }, []);
 
+  const fetchMenuDataFromNodeServer = async (filter = '') => {
+    try {
+      const results = await axios.get(`${api_midterm_url}/${filter}`);
+      console.log('menu data', results.data);
+      dispatch({ type: 'GET_MENU_NODE_SUCCESS', payload: results.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
+  useEffect(() => {
+    fetchMenuDataFromNodeServer();
+  }, []);
 
-  
-return(
-<DemoContext_28.Provider value={{...state}}>
-    {children}
-</DemoContext_28.Provider>)}
-const useDemoContext_28 = ()=>{
-    return useContext(DemoContext_28);
-}
-export {DemoProvider_28,useDemoContext_28}
+  const changeMenuFilter = (filter) => {
+    console.log('filter', filter);
+    fetchMenuDataFromNodeServer(filter);
+  };
+  //   const fetchBlogDataFromSupabase = async () => {
+  //     try {
+  //       let { data, error } = await supabase.from('card_28').select('*');
+
+  //       console.log('data', data);
+  //       dispatch({ type: 'GET_BLOGS_SUPABASE_SUCCESS', payload: data });
+  //       //   setData(data);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   useEffect(() => {
+  //     fetchBlogDataFromSupabase();
+  //   }, []);
+
+  return (
+    <DemoContext_28.Provider value={{ ...state, changeMenuFilter }}>
+      {children}
+    </DemoContext_28.Provider>
+  );
+};
+
+const useDemoContext_28 = () => {
+  return useContext(DemoContext_28);
+};
+
+export { DemoProvider_28, useDemoContext_28 };
