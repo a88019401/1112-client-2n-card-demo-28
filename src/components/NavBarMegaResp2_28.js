@@ -134,6 +134,7 @@ const NavbarMegaResp2_28 = () => {
                         <li><Link to="/mid_localjson_28">Local Json</Link></li>
                         <li><Link to="/mid_node_28">Node Server</Link></li>
                         <li><Link to="/mid_node_context_28">Node + Context</Link></li>
+                        <li><Link to="/mid_supabase_context_28">Supabase + Context</Link></li>
                       </ul>
                     </div>
                   </li>

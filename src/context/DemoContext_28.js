@@ -4,7 +4,7 @@ import axios from 'axios';
 
 import DemoReducer_28 from './DemoReducer_28';
 
-// import { supabase } from '../db/clientSupabse';
+import { supabase } from '../db/clientSupabase.js';
 
 let api_midprep_url = `http://localhost:5001/api/midprep_28/overview2_28`;
 
@@ -14,11 +14,12 @@ let api_url = 'http://localhost:5001/api/mid_28/menu_28'
 const initialState = {
   pName: 'Chang Yo-Hao',
   pId: '909410028',
-  blogs: [],
-  blogs2: [],
+  blogs: [], // for supabase
+  blogs2: [], // for node
   data1: [],
   data2: [],
-  menu: [],
+  menu: [], //for supabas
+  menu2: [], //for node sever
 };
 
 const DemoContext_28 = React.createContext();
@@ -57,6 +58,27 @@ const DemoProvider_28 = ({ children }) => {
 
   useEffect(() => {
     fetchProductDataFromNodeServer();
+  }, []);
+
+  const fetchMenuDataFromNodeSupabase = async (filter = '') => {
+    try {
+      let filterData;
+      if (filter) {
+        let { data, error } = await supabase.from('menu_28').select('*').eq('category', filter);
+        filterData = data;
+      } else {
+        let { data, error } = await supabase.from('menu_28').select('*');
+        filterData = data;
+      }
+      dispatch({ type: 'GET_MENU_SUPABASE_SUCCESS', payload: filterData })
+    } catch (err) {
+      console.log(err)
+    }
+
+  }
+
+  useEffect(() => {
+    fetchMenuDataFromNodeSupabase();
   }, []);
 
   //   const fetchBlogDataFromSupabase = async () => {

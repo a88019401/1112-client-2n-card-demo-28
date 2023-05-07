@@ -18,7 +18,7 @@ import MenuStaticPage_28 from './pages/mid_28/MenuStaticPage_28';
 import MenuLocalJsonPage_28 from './pages/mid_28/MenuLocalJsonPage_28';
 import MenuNodeServerPage_28 from './pages/mid_28/MenuNodeServerPage_28';
 import MenuNodeServerContextPage_28 from './pages/mid_28/MenuNodeServerContextPage_28';
-
+import MenuSupabaseContextPage_28 from './pages/mid_28/MenuSupabaseContextPage_28'
 import Navbar from './components/NavBarMegaResp2_28.js';
 
 function App_28() {
@@ -41,6 +41,7 @@ function App_28() {
         <Route path='/mid_localjson_28' element={<MenuLocalJsonPage_28 />} />
         <Route path='/mid_node_28' element={<MenuNodeServerPage_28 />} />
         <Route path='/mid_node_context_28' element={<MenuNodeServerContextPage_28 />} />
+        <Route path='/mid_supabase_context_28' element={<MenuSupabaseContextPage_28 />} />
 
       </Routes>
     </BrowserRouter>

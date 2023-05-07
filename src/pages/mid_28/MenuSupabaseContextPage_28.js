@@ -5,7 +5,7 @@ import axios from 'axios';
 import Wrapper from '../../assets/wrapper/mid_28/Menu_28';
 import { useDemoContext_28 } from '../../context/DemoContext_28';
 // let api_url = 'http://localhost:5001/api/mid_28/menu_28'
-const MenuSupabaseContextPage_28 = () => {
+const MenuNodeServerContextPage_28 = () => {
   const { pName, pId, menu2, changeMenuFilter } = useDemoContext_28();
   // const [name, setName] = useState('yohao changs');
   // const [id, setId] = useState('909410028');
@@ -48,4 +48,4 @@ const MenuSupabaseContextPage_28 = () => {
   </Wrapper>;
 };
 
-export default MenuSupabaseContextPage_28;
+export default MenuNodeServerContextPage_28;
