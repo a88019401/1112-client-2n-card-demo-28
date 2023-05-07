@@ -21,7 +21,7 @@ import MenuNodeServerPage_28 from './pages/mid_28/MenuNodeServerPage_28';
 
 import MenuNodeServerContextPage_28 from './pages/mid_28/MenuNodeServerContextPage_28';
 
-import Navbar from './components/NavbarResp_28';
+import Navbar from './components/NavBarMegaResp2_28.js';
 
 function App_28() {
   return (

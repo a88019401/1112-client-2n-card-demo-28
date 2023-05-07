@@ -3,7 +3,7 @@ import { useState,useEffect } from 'react';
 //import blogData from '../data/blogData2_28'
 //let api_url = `http://localhost:5000/api/card2_28`;
 //let api_url = `https://one112-server-card-demo-28.onrender.com/api/card2_28`
-import { supabase } from '../db/clientSupabase';
+//import { supabase } from '../db/clientSupabase';
 import Wrapper from '../assets/wrapper/Blogs_28'
 import { useDemoContext_28 } from '../context/DemoContext_28';
 const BlogsSupabasePage_28 = () =>{
