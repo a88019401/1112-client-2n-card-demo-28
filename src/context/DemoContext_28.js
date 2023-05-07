@@ -6,13 +6,14 @@ import DemoReducer_28 from './DemoReducer_28';
 
 // import { supabase } from '../db/clientSupabse';
 
-let api_midprep_url = `http://localhost:5000/api/midprep_28/overview2_28`;
+let api_midprep_url = `http://localhost:5001/api/midprep_28/overview2_28`;
 
-let api_midterm_url = `http://localhost:5000/api/mid_28/menu_28`;
+let api_midterm_url = `http://localhost:5001/api/mid_28/menu_28`;
+let api_url = 'http://localhost:5001/api/mid_28/menu_28'
 
 const initialState = {
-    pName:'Chang Yo-Hao',
-    pId:'909410028',
+  pName: 'Chang Yo-Hao',
+  pId: '909410028',
   blogs: [],
   blogs2: [],
   data1: [],
@@ -24,6 +25,25 @@ const DemoContext_28 = React.createContext();
 
 const DemoProvider_28 = ({ children }) => {
   const [state, dispatch] = useReducer(DemoReducer_28, initialState);
+
+  const fetchMenuDataFromNodeServer = async (filter = '') => {
+    try {
+      const results = await axios.get(`${api_midterm_url}/${filter}`);
+      console.log('results', results);
+      dispatch({ type: 'GET_MENU_NODE_SUCCESS', payload: results.data });
+      // setData(results.data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  useEffect(() => {
+    fetchMenuDataFromNodeServer();
+  }, {});
+
+  const changeMenuFilter = (filter) => {
+    console.log('filter', filter);
+    fetchMenuDataFromNodeServer(filter);
+  };
 
   const fetchProductDataFromNodeServer = async () => {
     try {
@@ -39,24 +59,6 @@ const DemoProvider_28 = ({ children }) => {
     fetchProductDataFromNodeServer();
   }, []);
 
-  const fetchMenuDataFromNodeServer = async (filter = '') => {
-    try {
-      const results = await axios.get(`${api_midterm_url}/${filter}`);
-      console.log('menu data', results.data);
-      dispatch({ type: 'GET_MENU_NODE_SUCCESS', payload: results.data });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchMenuDataFromNodeServer();
-  }, []);
-
-  const changeMenuFilter = (filter) => {
-    console.log('filter', filter);
-    fetchMenuDataFromNodeServer(filter);
-  };
   //   const fetchBlogDataFromSupabase = async () => {
   //     try {
   //       let { data, error } = await supabase.from('card_28').select('*');
@@ -84,4 +86,4 @@ const useDemoContext_28 = () => {
   return useContext(DemoContext_28);
 };
 
-export { DemoProvider_28, useDemoContext_28 };
+export { DemoProvider_28, useDemoContext_28, };

@@ -16,7 +16,7 @@ const MenuNodeServerPage_28 = () => {
   }
 
   useEffect(() => {
-    fetchMenuDataFromNodeServer();
+    fetchMenuDataFromNodeServer(api_url);
   }, {});
   return (
     <Wrapper>
