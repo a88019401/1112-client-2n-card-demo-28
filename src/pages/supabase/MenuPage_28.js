@@ -1,10 +1,14 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {  useState, useEffect } from 'react';
+import { useParams,useNavigate } from 'react-router-dom';
+
 import '../../App.css';
 
 
 const App_28= ()=> {
   const [products, setProducts] = useState([]);
+  const params = useParams();
+  console.log('Params category',params.category);
   
   const getMenuData_28 = async () =>{
     const response = await fetch(`https://bmzxxmfoxghswpelukyz.supabase.co/rest/v1/menu_28?select=*`,{
@@ -20,10 +24,7 @@ const App_28= ()=> {
     setProducts(data);
     
   }
-  
-  const changeFilter = (filter = '' ) =>{
-    //navigate(`/supa_menu_xx/${filter}`)
-  }
+
 
   useEffect(()=>{
     getMenuData_28();

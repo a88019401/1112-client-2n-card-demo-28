@@ -10,9 +10,9 @@ const MenuByCategoryPage_28= ()=> {
   
   const Navigate = useNavigate();
   
-  const changeFilter = (filter = '' ) =>{
+  /*const changeFilter = (filter = '' ) =>{
     window.location.href = `/supa_menu_28/${filter}`
-  }
+  }*/
 
   const getMenuDataByCategory_28 = async () =>{
     const response = await fetch(`https://bmzxxmfoxghswpelukyz.supabase.co/rest/v1/menu_28?select=*&category=eq.${params.category}`,{
@@ -44,15 +44,15 @@ const MenuByCategoryPage_28= ()=> {
             <div className="underline"></div>
           </div>
           <div className="btn-container">
-            <button type="button"  className="filter-btn" data-id="all">all</button
+            <button type="button"  className="filter-btn" data-id="all"onClick={() => window.location.href = '/supa_menu_28/'}>all</button
             ><button type="button" className="filter-btn" data-id="breakfast" onClick={() => window.location.href = '/supa_menu_28/breakfast'}>
   breakfast
 </button>
-              <button type="button" className="filter-btn" data-id="lunch">
+              <button type="button" className="filter-btn" data-id="lunch"onClick={() => window.location.href = '/supa_menu_28/lunch'}>
               lunch</button
-            ><button type="button" className="filter-btn" data-id="dessert">
+            ><button type="button" className="filter-btn" data-id="dessert"onClick={() => window.location.href = '/supa_menu_28/dessert'}>
               dessert</button
-            ><button type="button" className="filter-btn" data-id="shakes">
+            ><button type="button" className="filter-btn" data-id="shakes"onClick={() => window.location.href = '/supa_menu_28/shakes'}>
               shakes
             </button>
           </div>
