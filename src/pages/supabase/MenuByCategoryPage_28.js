@@ -1,13 +1,21 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import {  useState, useEffect } from 'react';
+import { useParams,useNavigate } from 'react-router-dom';
 import '../../App.css';
 
 
-const App_28= ()=> {
+const MenuByCategoryPage_28= ()=> {
   const [products, setProducts] = useState([]);
+  const params = useParams();
+  console.log('Params category',params.category);
   
-  const getMenuData_28 = async () =>{
-    const response = await fetch(`https://bmzxxmfoxghswpelukyz.supabase.co/rest/v1/menu_28?select=*`,{
+  const Navigate = useNavigate();
+  
+  const changeFilter = (filter = '' ) =>{
+    window.location.href = `/supa_menu_28/${filter}`
+  }
+
+  const getMenuDataByCategory_28 = async () =>{
+    const response = await fetch(`https://bmzxxmfoxghswpelukyz.supabase.co/rest/v1/menu_28?select=*&category=eq.${params.category}`,{
       method:'GET',
       headers:{
         apikey:`eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJtenh4bWZveGdoc3dwZWx1a3l6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzcwNTY5ODUsImV4cCI6MTk5MjYzMjk4NX0.6N8UbgHKfN7OuoKlNRFf8yUNMkNszU1tr8FWbOjjEsc`,
@@ -21,12 +29,8 @@ const App_28= ()=> {
     
   }
   
-  const changeFilter = (filter = '' ) =>{
-    //navigate(`/supa_menu_xx/${filter}`)
-  }
-
   useEffect(()=>{
-    getMenuData_28();
+    getMenuDataByCategory_28();
     
   },[])
   return (    
@@ -40,10 +44,11 @@ const App_28= ()=> {
             <div className="underline"></div>
           </div>
           <div className="btn-container">
-            <button type="button" className="filter-btn" data-id="all">all</button
-            ><button type="button" className="filter-btn" data-id="breakfast">
-              breakfast</button
-            ><button type="button" className="filter-btn" data-id="lunch">
+            <button type="button"  className="filter-btn" data-id="all">all</button
+            ><button type="button" className="filter-btn" data-id="breakfast" onClick={() => window.location.href = '/supa_menu_28/breakfast'}>
+  breakfast
+</button>
+              <button type="button" className="filter-btn" data-id="lunch">
               lunch</button
             ><button type="button" className="filter-btn" data-id="dessert">
               dessert</button
@@ -76,4 +81,4 @@ const App_28= ()=> {
   );
 }
 
-export default App_28;
+export default MenuByCategoryPage_28;
