@@ -2,13 +2,13 @@ import {  useState, useEffect } from 'react';
 import MenuProducts_28 from '../../components/MenuProducts_28';
 import '../../App.css';
 
-const base_url = `http://localhost:5000/api/node_menu_28`
+const base_url = `http://localhost:5000/api/node_menu_28`;
 
 let url = `${base_url}`
 
 
 
-const MenuPage_28= ()=> {
+const MenuNodePage_28= ()=> {
   const [products, setProducts] = useState([]);
   //const params = useParams();
   //console.log('Params category',params.category);
@@ -41,7 +41,7 @@ const changeFilter = (filter) =>{
       <div className="section-center">
         <section className="menu">
           <div className="title">
-            <h2>Menu from Supabase menu table</h2>
+          <h2>Menu from Node sever menu table</h2>
             <h3>張祐豪, 909410028</h3>
             <div className="underline"></div>
           </div>
@@ -83,4 +83,4 @@ const changeFilter = (filter) =>{
   );
 }
 
-export default MenuPage_28;
+export default MenuNodePage_28;
