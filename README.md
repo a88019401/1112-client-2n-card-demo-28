@@ -1,3 +1,23 @@
+# 民國111第二學期，動態網頁課程
+第二學期的React課程，版本有點舊了，主要是在教整個Recat靜態的網頁構造
+const App_28= ()=> {
+  return (
+<BrowserRouter>
+
+<Routes>
+<Route exact path='/' element={<HomePage_28/>}/>
+
+<Route path='/static_28' element={<MenuStaticPage_28/>}/>
+<Route path='/supa_menu_28' element={<SupabaseMenuPage_28/>}/>
+
+<Route path='/supa_menu_28/:category' element={<SubaByCategoryPage_28/>}/>
+<Route path='/node_menu_28' element={<MenuNodePage_28/>}/>
+<Route path='/local_menu_28' element={<MenuLocalJsonPage_28/>}/>
+
+</Routes>
+
+我有部屬上去，歡迎有興趣的朋友，嘗試修改 URL (/static_28)，體驗react的一些渲染方式~
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
