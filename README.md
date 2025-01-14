@@ -1,6 +1,6 @@
 # 民國111第二學期，動態網頁課程
 第二學期的React課程，版本有點舊了，主要是在教整個Recat靜態的網頁構造
-```
+```javascript
 const App_28= ()=> {
   return (
 <BrowserRouter>
